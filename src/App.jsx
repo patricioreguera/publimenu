@@ -1,34 +1,19 @@
-import { useState , useEffect} from 'react'
+import { useState } from 'react'
 import './App.css'
-import { getPromoImg } from './getPromoImg'
+import { Ads } from './components/Ads'
+import { Menu } from './components/Menu'
 
-function App() {
-const [loading, setLoading] = useState(true)
-const [ url,name ]=getPromoImg()
-
-useEffect(() => {
-  setTimeout(() => {
-    setLoading(false)
-    console.log("cargo el menu")
-}, 4000);
-}, []);
-
+export default function App() {
+  const [loading, setLoading] = useState(true)
 
   return (
     <div className="App">
       {
-loading ? 
-<>
-<h4>{`Se esta cargando el menu de ${name}`}</h4>
-<img src={url} alt="none" /> 
-</> 
-:
-<h1>Menu</h1>
+        loading ?
+       <Ads setLoading = { setLoading }/> :
+       <Menu/>
       }
-   
-
     </div>
   )
 }
 
-export default App
